@@ -321,15 +321,14 @@ bool debugCheckHasMediaQuery(BuildContext context) {
 /// with the more generic advice regarding [Directionality].
 ///
 /// Does nothing if asserts are disabled. Always returns true.
-bool debugCheckHasDirectionality(BuildContext context, { String? why, String? hint, String? alternative }) {
+bool debugCheckHasDirectionality(BuildContext context, {String? why, String? hint, String? alternative}) {
   assert(() {
     if (context.widget is! Directionality && context.getElementForInheritedWidgetOfExactType<Directionality>() == null) {
       why = why == null ? '' : ' $why';
       throw FlutterError.fromParts(<DiagnosticsNode>[
         ErrorSummary('No Directionality widget found.'),
         ErrorDescription('${context.widget.runtimeType} widgets require a Directionality widget ancestor$why.\n'),
-        if (hint != null)
-          ErrorHint(hint),
+        if (hint != null) ErrorHint(hint),
         context.describeWidget('The specific widget that could not find a Directionality ancestor was'),
         context.describeOwnershipChain('The ownership chain for the affected widget is'),
         ErrorHint(
@@ -340,8 +339,7 @@ bool debugCheckHasDirectionality(BuildContext context, { String? why, String? hi
           'values, and to resolve EdgeInsetsDirectional, '
           'AlignmentDirectional, and other *Directional objects.',
         ),
-        if (alternative != null)
-          ErrorHint(alternative),
+        if (alternative != null) ErrorHint(alternative),
       ]);
     }
     return true;
@@ -463,13 +461,7 @@ bool debugCheckHasOverlay(BuildContext context) {
 /// See [the widgets library](widgets/widgets-library.html) for a complete list.
 bool debugAssertAllWidgetVarsUnset(String reason) {
   assert(() {
-    if (debugPrintRebuildDirtyWidgets ||
-        debugPrintBuildScope ||
-        debugPrintScheduleBuildForStacks ||
-        debugPrintGlobalKeyedWidgetLifecycle ||
-        debugProfileBuildsEnabled ||
-        debugHighlightDeprecatedWidgets ||
-        debugProfileBuildsEnabledUserWidgets) {
+    if (debugPrintRebuildDirtyWidgets || debugPrintBuildScope || debugPrintScheduleBuildForStacks || debugPrintGlobalKeyedWidgetLifecycle || debugProfileBuildsEnabled || debugHighlightDeprecatedWidgets || debugProfileBuildsEnabledUserWidgets) {
       throw FlutterError(reason);
     }
     return true;
